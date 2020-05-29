@@ -8,3 +8,5 @@
 
 teachers = Teacher.create([{ name: 'Albus Dumbledore' }, { name: 'Severus Snape' }, { name: 'Minerva McGonagall' }])
 Assignment.create(title: 'Spells Homework', teacher: teachers.first, due_date: Date.today)
+students = Student.create([{ name: 'Harry Potter', teacher: teachers.first }, { name: 'Ron Weasley', teacher: teachers.first }, { name: 'Heromine Granger', teacher: teachers.first }])
+Submission.create(assignment: Assignment.first, student: students.first, grade: 90.00)

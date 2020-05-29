@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200523154211) do
+ActiveRecord::Schema.define(version: 20200529151717) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer "teacher_id"
@@ -20,10 +20,27 @@ ActiveRecord::Schema.define(version: 20200523154211) do
     t.index ["teacher_id"], name: "index_assignments_on_teacher_id"
   end
 
+  create_table "students", force: :cascade do |t|
+    t.integer "teacher_id"
+    t.string "name"
+    t.decimal "grade_average", precision: 5, scale: 2
+    t.index ["teacher_id"], name: "index_students_on_teacher_id"
+  end
+
+  create_table "submissions", force: :cascade do |t|
+    t.integer "student_id"
+    t.integer "assignment_id"
+    t.decimal "grade", precision: 5, scale: 2
+    t.index ["assignment_id"], name: "index_submissions_on_assignment_id"
+    t.index ["student_id"], name: "index_submissions_on_student_id"
+  end
+
   create_table "teachers", force: :cascade do |t|
+    t.integer "teacher_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["teacher_id"], name: "index_teachers_on_teacher_id"
   end
 
 end
